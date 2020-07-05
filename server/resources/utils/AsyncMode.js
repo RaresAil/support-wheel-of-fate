@@ -1,4 +1,6 @@
 
+// Aceste 2 functii sunt pentru a folosi middleware si route-uri asincrone.
+// Fara acestea daca ruta arunca un Exception si nu se foloseste try & catch atunci client-ul nu va primi raspunsul niciodata de la server.
 module.exports.middleware = (fn) => (req, res, next) => (
   Promise
     .resolve(fn(req, res, next))

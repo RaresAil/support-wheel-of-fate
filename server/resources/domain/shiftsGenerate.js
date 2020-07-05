@@ -7,7 +7,7 @@ module.exports = async (data) => {
   const { mongoose } = process;
   const Engineer = mongoose.model('engineer');
 
-  // Remove the old list.
+  // Stergem vechia lista
   await Engineer.remove({});
 
   console.time('Generating working shifts');
@@ -23,9 +23,10 @@ module.exports = async (data) => {
       lastDate.setDate(lastDate.getDate() + 1);
     }
 
-    lastDate = process.loader.utils.DateUtil.getNextMonday(lastDate);// I added a do-while to ensure that an engineer don't work 2 consecutive days.
+    // Am adaugat un do-while pentru a elimina riscul de a lucra in zile consecutive
+    lastDate = process.loader.utils.DateUtil.getNextMonday(lastDate);
     do {
-      // We generate a random list using the Fisher–Yates shuffle algorithm.
+      // Am generat cate o lista pentru fiecare saptamana in parte folosing algoritmul de amestecare Fisher–Yates
       for (let i = shiftWeek.length - 1; i > 0; i--) {
         const n = Math.floor(Math.random() * i + 1);
         const temp = shiftWeek[n];
@@ -35,7 +36,7 @@ module.exports = async (data) => {
     } while (lastWeek === shiftWeek[shiftWeek.length - 1]);
     lastWeek = shiftWeek[shiftWeek.length - 1];
 
-    // We set the working day for each engineer
+    // Grupam angajatii pe zile
     shifts = [...shifts, shiftWeek.map((x, i) => {
       return {
         name: x,
@@ -46,8 +47,8 @@ module.exports = async (data) => {
 
   console.timeEnd('Generating working shifts');
 
-  // Add all the operations to a list to wait for them later.
-  // This step is required because you cannot use await inside .forEach
+  // Adaugam operatiile de salvare a fiecarui angajat intr-o lista pentru a putea astepta dupa acestea.
+  // Acest pas este necesar deoarece cu functie .forEach nu poti folosi await
   let executions = [];
   data.forEach((name) => {
     const eng = new Engineer({
@@ -59,7 +60,7 @@ module.exports = async (data) => {
     executions = [...executions, eng.save()];
   });
 
-  // Wait to complete all the operations from the "executions" list.
+  // Asteptam sa se execute toate operatiunile de salvare.
   await Promise.all(executions);
   return undefined;
 };

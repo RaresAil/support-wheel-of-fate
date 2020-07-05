@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
     return process.loader.responders['400'](req, res, 'The \'engineers\' array is required.');
   }
 
-  // Delete dublicates and invalid names.
+  // Stergem elementele dublicate si care sunt invalide.
   data = Array.from(new Set(data)).filter((x) => x && x.toString().trim() !== '' && x.toString().length <= 60);
 
   if (data.length !== 10) {
