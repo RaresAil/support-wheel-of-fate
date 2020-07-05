@@ -1,0 +1,43 @@
+{
+    "env": {
+        "commonjs": true,
+        "es2020": true,
+        "node": true
+    },
+    "extends": [
+        "standard"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 11
+    },
+    "rules": {
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "no-unused-vars": [
+        "warn"
+      ],
+      "one-var": [
+        "off"
+      ],
+      "no-console": [
+        "off"
+      ],
+      "global-require": [
+        "off"
+      ],
+      "import/no-dynamic-require": [
+        "off"
+      ],
+      "dot-notation": [
+        "off"
+      ],
+      "no-bitwise": [
+        "off"
+      ],
+      "semi": "off"
+    }
+}
