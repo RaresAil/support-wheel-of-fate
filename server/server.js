@@ -31,7 +31,7 @@ expressSwagger({
       title: 'Wheel of Fate',
       version: '1.0.0'
     },
-    host: 'localhost:4000',
+    host: '',
     basePath: '/api/v1',
     produces: [
       'application/json'
