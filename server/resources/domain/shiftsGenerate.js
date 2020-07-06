@@ -49,7 +49,7 @@ module.exports = async (data) => {
 
   // Adaugam operatiile de salvare a fiecarui angajat intr-o lista pentru a putea astepta dupa acestea.
   // Acest pas este necesar deoarece cu functie .forEach nu poti folosi await
-  let executions = [];
+  let executionsEng = [];
   data.forEach((name) => {
     const eng = new Engineer({
       name,
@@ -57,10 +57,11 @@ module.exports = async (data) => {
         return week.filter((info) => info.name === name).map((info) => info.day)[0];
       })
     });
-    executions = [...executions, eng.save()];
+    executionsEng = [...executionsEng, eng.save()];
   });
 
   // Asteptam sa se execute toate operatiunile de salvare.
-  await Promise.all(executions);
+  await Promise.all(executionsEng);
+
   return undefined;
 };

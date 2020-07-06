@@ -1,0 +1,105 @@
+
+$tableBorderWidth: 1px
+$tableBorderColor: #f4f4f4
+$tableHoverBackground: #FF2768
+$tableHoverTitle: #f7f7f7
+$tableLine: rgba(0, 0, 0, 0.03)
+$tableLineHover: rgba(0, 0, 0, 0.1)
+
+#root
+  width: 100%
+  padding: 50px
+  box-sizing: border-box
+.app-overlay
+  position: absolute
+  z-index: 1000
+  left: 0
+  bottom: 0
+  right: 0
+  top: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  background: rgba(0, 0, 0, 0.75)
+  opacity: 0
+  pointer-events: none
+  transition: 0.5s
+  &.active
+    opacity: 1
+    pointer-events: auto
+.app-buttons
+  width: 100%
+  display: flex
+  flex-direction: row-reverse
+  flex-wrap: wrap
+  box-sizing: border-box
+  padding: 0 0 10px 0
+  button
+    font-size: 14px
+    background: #f7f7f7
+    border: none
+    padding: 10px 30px
+    font-weight: 500
+    border-radius: 10px
+    cursor: pointer
+    color: #000000
+    transition: 0.5s
+    &:hover
+      background: $tableHoverBackground
+      color: #f4f4f4
+.app-header
+  width: 100%
+  box-sizing: border-box
+  display: grid
+  grid-template-columns: repeat(7, 1fr)
+  padding: 20px 0 10px
+  .app-hd-item
+    text-transform: uppercase
+    font-weight: 500
+    font-size: 14px
+    padding-left: 10px
+    color: rgba(0, 0, 0, 0.75)
+    &:nth-child(6), &:nth-child(7)
+      color: rgba(0, 0, 0, 0.25)
+.app
+  width: 100%
+  background: none
+  box-sizing: border-box
+  display: grid
+  grid-template-columns: repeat(7, 1fr)
+  border: 0px solid $tableBorderColor
+  border-left-width: $tableBorderWidth
+  border-top-width: $tableBorderWidth
+  .cald-box
+    transition: 0.5s
+    height: 200px
+    background: none
+    border: 0px solid $tableBorderColor
+    border-right-width: $tableBorderWidth
+    border-bottom-width: $tableBorderWidth
+    box-sizing: border-box
+    color: #000000
+    .cald-box-title
+      font-size: 26px
+      font-weight: 700
+      padding: 20px 20px 10px 20px
+      box-sizing: border-box
+    .cald-box-line
+      background: $tableLine
+      box-sizing: border-box
+      padding: 5px 20px
+      font-size: 14px
+      margin-bottom: 8px
+      transition: 0.5s
+      color: #000000
+    &:hover
+      background: $tableHoverBackground
+      color: $tableHoverTitle
+      .cald-box-line
+        background: $tableLineHover
+        color: $tableHoverTitle
+    &.weekend, &.weekend:hover, &.empty
+      color: rgba(0, 0, 0, 0.25)
+      background: none
+      .cald-box-line
+        color: rgba(0, 0, 0, 0.25)
