@@ -14,7 +14,7 @@ module.exports = async (data) => {
 
   const weeks = 2;
   let shifts = [];
-  let lastWeek;
+  let lastWeek = [];
   let lastDate;
 
   for (let w = 0; w < weeks; w++) {
@@ -23,18 +23,21 @@ module.exports = async (data) => {
       lastDate.setDate(lastDate.getDate() + 1);
     }
 
-    // Am adaugat un do-while pentru a elimina riscul de a lucra in zile consecutive
     lastDate = process.loader.utils.DateUtil.getNextMonday(lastDate);
+    let thisWeek = [];
+
     do {
       // Am generat cate o lista pentru fiecare saptamana in parte folosing algoritmul de amestecare Fisher–Yates
       for (let i = shiftWeek.length - 1; i > 0; i--) {
-        const n = Math.floor(Math.random() * i + 1);
+        const n = Math.floor(Math.random() * i);
         const temp = shiftWeek[n];
         shiftWeek[n] = shiftWeek[i];
         shiftWeek[i] = temp;
       }
-    } while (lastWeek === shiftWeek[shiftWeek.length - 1]);
-    lastWeek = shiftWeek[shiftWeek.length - 1];
+      thisWeek = shiftWeek.slice(0, 2);
+    } while (thisWeek.some((x) => lastWeek.indexOf(x) >= 0));
+
+    lastWeek = shiftWeek.slice(shiftWeek.length - 2, shiftWeek.length);
 
     // Grupam angajatii pe zile
     shifts = [...shifts, shiftWeek.map((x, i) => {
