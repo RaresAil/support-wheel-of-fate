@@ -41,7 +41,7 @@ export default class App extends Component {
 
     const data = await (await fetch('/api/v1/shifts', {
       headers: {
-        Authorization: 'Bearer ccdcd9e0844111b17da776a9d89ddd3017bbac731e898c7a'
+        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
       }
     })).json();
 
@@ -61,7 +61,7 @@ export default class App extends Component {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ccdcd9e0844111b17da776a9d89ddd3017bbac731e898c7a'
+        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
       },
       body: JSON.stringify([
         'Marianne Mcintyre',
@@ -79,7 +79,7 @@ export default class App extends Component {
 
     const data = await (await fetch('/api/v1/shifts', {
       headers: {
-        Authorization: 'Bearer ccdcd9e0844111b17da776a9d89ddd3017bbac731e898c7a'
+        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`
       }
     })).json();
 
