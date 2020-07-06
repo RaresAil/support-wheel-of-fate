@@ -82,3 +82,6 @@ For client:
 SKIP_PREFLIGHT_CHECK=true
 REACT_APP_TOKEN= #FILL THIS
 ```
+
+## Demo
+![Demo](/demo.png)
